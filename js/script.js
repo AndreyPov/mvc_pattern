@@ -65,8 +65,19 @@ var controller = {
         },
 
         event: function() {
-            var el = document.getElementById("calcUser");
-            el.onclick = controller.handleClick;
+
+            var butSum = document.getElementById("calcSum");
+            butSum.onclick = controller.handleClick;
+
+            var butDiff = document.getElementById("calcDiff");
+            butDiff.onclick = controller.handleClick;
+
+            var butMult = document.getElementById("calcMult");
+            butMult.onclick = controller.handleClick;
+
+            var butDivide = document.getElementById("calcDivide");
+            butDivide.onclick = controller.handleClick;
+
         }
 
     };
