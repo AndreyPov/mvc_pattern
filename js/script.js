@@ -18,10 +18,26 @@ var view = {
 var model = {
     number: 0,
 
-    calculate: function(x, y) {
+    calculate: function(x, y, sign) {
 
-        var sum = this.number = x * y;
-        if (isNaN(sum)) {
+        switch (sign) {
+            case 'sum':
+                var result = this.number = parseInt(x) + parseInt(y);
+                break;
+            case 'mult':
+                result = this.number = x * y;
+                break;
+            case 'diff':
+                result = this.number = x - y;
+                break;
+            case 'divide':
+                result = this.number = x / y;
+                break;
+            default:
+                result = null;
+        }
+
+        if (isNaN(result)) {
             alert("Change the value and try again!");
             return null;
         }
@@ -37,9 +53,35 @@ var model = {
 var controller = {
 
     handleClick: function() {
+
         var firstValue = document.getElementById("firstNumber").value;
         var secondValue = document.getElementById("secondNumber").value;
-        var result = model.calculate(firstValue, secondValue);
+        switch (this) {
+
+            case document.getElementById("calcSum"): // if (x === 'value1')
+                var result = model.calculate(firstValue, secondValue, 'sum');
+                break;
+
+            case document.getElementById("calcMult"): // if (x === 'value2')
+                result = model.calculate(firstValue, secondValue, 'mult');
+                break;
+
+            case document.getElementById("calcDiff"):
+                result = model.calculate(firstValue, secondValue, 'diff');
+                break;
+
+            case document.getElementById("calcDivide"):
+                result = model.calculate(firstValue, secondValue, 'divide');
+                break;
+
+            default:
+                result = null;
+        }
+        // if(document.getElementById("calcSum") === this){  }
+        // if(document.getElementById("calcMult") === this){  }
+        // if(document.getElementById("calcDiff") === this){  }
+        // if(document.getElementById("calcDivide") === this){  }
+
         view.showNumber(result);
     }
 
